@@ -1,0 +1,14 @@
+# Binaries
+dist/
+bin/
+mastodon-scout
+mastodon-scout-linux
+
+# Local History
+.claude/
+.DS_Store
+
+# Go
+vendor/
+*.test
+*.out
