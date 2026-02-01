@@ -6,7 +6,7 @@ metadata:
     "openclaw":
       {
         "emoji": "🦣",
-        "requires": { "bins": ["mastodon-scout"] },
+        "requires": { "anyBins": ["{baseDir}/bin/mastodon-scout", "mastodon-scout"] },
         "install":
           [
             {
@@ -16,6 +16,7 @@ metadata:
               "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.2/mastodon-scout-darwin-arm64.zip",
               "archive": "zip",
               "bins": ["mastodon-scout"],
+              "targetDir": "{baseDir}/bin",
               "label": "Install Mastodon Scout (macOS Apple Silicon)",
             },
             {
@@ -25,6 +26,7 @@ metadata:
               "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.2/mastodon-scout-darwin-amd64.zip",
               "archive": "zip",
               "bins": ["mastodon-scout"],
+              "targetDir": "{baseDir}/bin",
               "label": "Install Mastodon Scout (macOS Intel)",
             },
             {
@@ -34,6 +36,7 @@ metadata:
               "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.2/mastodon-scout-linux-amd64.zip",
               "archive": "zip",
               "bins": ["mastodon-scout"],
+              "targetDir": "{baseDir}/bin",
               "label": "Install Mastodon Scout (Linux)",
             },
             {
@@ -43,6 +46,7 @@ metadata:
               "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.2/mastodon-scout-windows-amd64.zip",
               "archive": "zip",
               "bins": ["mastodon-scout.exe"],
+              "targetDir": "{baseDir}/bin",
               "label": "Install Mastodon Scout (Windows)",
             },
           ],
@@ -68,25 +72,25 @@ Read-only Mastodon CLI that fetches data from the Mastodon API. Returns human-re
 
 #### Home Timeline
 ```
-mastodon-scout home
+{baseDir}/bin/mastodon-scout home
 ```
 Fetches the authenticated user's home timeline.
 
 #### User Tweets
 ```
-mastodon-scout user-tweets
+{baseDir}/bin/mastodon-scout user-tweets
 ```
 Fetches the authenticated user's own posts.
 
 #### Mentions
 ```
-mastodon-scout mentions
+{baseDir}/bin/mastodon-scout mentions
 ```
 Fetches mentions of the authenticated user.
 
 #### Search
 ```
-mastodon-scout search <query>
+{baseDir}/bin/mastodon-scout search <query>
 ```
 Searches for posts matching the query.
 
