@@ -1,29 +1,37 @@
-# Mastodon Scout
+# Mastodon Scout 🦣
 
-Read-only Mastodon CLI that outputs raw JSON from the Mastodon API.
+Read-only Mastodon CLI that fetches data from the Mastodon API. Returns human-readable summaries by default, or raw JSON with the `--json` flag.
 
 ## Features
 
-- **Read-only**: No posting, following, or mutations
-- **Raw JSON output**: Unmodified API responses
-- **OAuth authentication**: Bearer token via environment variable
-- **Fast**: Single binary with minimal dependencies
-- **Cross-platform**: macOS and Linux binaries
+- **Read-only**: No posting, following, or mutations.
+- **Human-friendly**: Clean, text-based summaries for easy reading.
+- **JSON output**: Optional raw API responses for integration.
+- **OAuth authentication**: Bearer token via environment variable.
+- **Cross-platform**: Native binaries for macOS (Intel/Silicon) and Linux.
 
 ## Installation
 
-### Build from source
+### Using OpenClaw / ClawHub
+Install directly into your OpenClaw workspace:
 
 ```bash
-make build          # Build for current platform
-make build-linux    # Build for Linux
-make build-all      # Build for both platforms
+clawhub install mastodon-scout
+```
+
+### Manual Download
+Download the latest binary from the [Releases](https://github.com/patelhiren/mastodon-scout/releases) page.
+
+### Build from source
+Requires Go 1.21+
+
+```bash
+make build
 ```
 
 ## Usage
 
 ### Setup
-
 Set your Mastodon OAuth bearer token:
 
 ```bash
