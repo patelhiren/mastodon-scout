@@ -2,12 +2,43 @@
 name: mastodon-scout
 description: Read-only Mastodon CLI. Outputs human-readable timeline summaries or raw JSON.
 metadata:
-  clawdbot:
-    emoji: 🦣
-    requires:
-      bins: []
-      env:
-        - MASTODON_TOKEN
+  {
+    "openclaw":
+      {
+        "emoji": "🦣",
+        "requires": { "bins": ["mastodon-scout"] },
+        "install":
+          [
+            {
+              "id": "download-darwin-arm64",
+              "kind": "download",
+              "os": ["darwin"],
+              "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.0/mastodon-scout-darwin-arm64.zip",
+              "archive": "zip",
+              "bins": ["mastodon-scout"],
+              "label": "Install Mastodon Scout (macOS Apple Silicon)",
+            },
+            {
+              "id": "download-darwin-amd64",
+              "kind": "download",
+              "os": ["darwin"],
+              "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.0/mastodon-scout-darwin-amd64.zip",
+              "archive": "zip",
+              "bins": ["mastodon-scout"],
+              "label": "Install Mastodon Scout (macOS Intel)",
+            },
+            {
+              "id": "download-linux-amd64",
+              "kind": "download",
+              "os": ["linux"],
+              "url": "https://github.com/patelhiren/mastodon-scout/releases/download/v1.0.0/mastodon-scout-linux-amd64.zip",
+              "archive": "zip",
+              "bins": ["mastodon-scout"],
+              "label": "Install Mastodon Scout (Linux)",
+            },
+          ],
+      },
+  }
 ---
 
 # Mastodon Scout
