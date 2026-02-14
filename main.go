@@ -256,29 +256,57 @@ func formatStatuses(data interface{}) {
 	}
 
 	for i, status := range statuses {
-		// Extract account info
-		account, _ := status["account"].(map[string]interface{})
-		username := getStringField(account, "username")
-		displayName := getStringField(account, "display_name")
+		// Check if this is a boost (reblog)
+		reblog, isReblog := status["reblog"].(map[string]interface{})
+		var boostedBy string
+		if isReblog {
+			// Get the booster's info
+			account, _ := status["account"].(map[string]interface{})
+			boostedBy = getStringField(account, "username")
+		}
 
-		// Extract post info
-		content := getStringField(status, "content")
-		createdAt := getStringField(status, "created_at")
-		reblogsCount := getFloatField(status, "reblogs_count")
-		favoritesCount := getFloatField(status, "favourites_count")
-		repliesCount := getFloatField(status, "replies_count")
-		url := getStringField(status, "url")
+		// Extract post info - use reblog content if boosted
+		var content string
+		var createdAt string
+		var reblogsCount, favoritesCount, repliesCount float64
+		var postURL string
+		var postAccount map[string]interface{}
 
-		// Strip HTML tags from content (simple approach)
+		if isReblog {
+			content = getStringField(reblog, "content")
+			createdAt = getStringField(reblog, "created_at")
+			reblogsCount = getFloatField(reblog, "reblogs_count")
+			favoritesCount = getFloatField(reblog, "favourites_count")
+			repliesCount = getFloatField(reblog, "replies_count")
+			postURL = getStringField(reblog, "url")
+			postAccount, _ = reblog["account"].(map[string]interface{})
+		} else {
+			content = getStringField(status, "content")
+			createdAt = getStringField(status, "created_at")
+			reblogsCount = getFloatField(status, "reblogs_count")
+			favoritesCount = getFloatField(status, "favourites_count")
+			repliesCount = getFloatField(status, "replies_count")
+			postURL = getStringField(status, "url")
+			postAccount, _ = status["account"].(map[string]interface{})
+		}
+
+		// Extract account info (from original post for boosts)
+		username := getStringField(postAccount, "username")
+		displayName := getStringField(postAccount, "display_name")
+
+		// Strip HTML tags from content
 		content = stripHTML(content)
 
 		// Print formatted post
 		fmt.Printf("--- Post %d ---\n", i+1)
+		if isReblog {
+			fmt.Printf("🔁 @%s boosted\n", boostedBy)
+		}
 		fmt.Printf("@%s (%s)\n", username, displayName)
 		fmt.Printf("%s\n", createdAt)
 		fmt.Printf("\n%s\n\n", content)
 		fmt.Printf("💬 %d  🔁 %d  ⭐ %d\n", int(repliesCount), int(reblogsCount), int(favoritesCount))
-		fmt.Printf("🔗 %s\n\n", url)
+		fmt.Printf("🔗 %s\n\n", postURL)
 	}
 }
 
