@@ -46,4 +46,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add SKILL.md
           git commit -m "chore: update SKILL.md to v$VERSION" || echo "No changes to commit"
-          git push
+          git push origin HEAD:main
