@@ -1,17 +1,7 @@
 ---
 name: mastodon-scout
 description: Read-only Mastodon skill. Outputs human-readable timeline summaries or raw JSON.
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "🦣",
-        "envVars": [
-          { "name": "MASTODON_TOKEN", "required": true },
-          { "name": "MASTODON_INSTANCE", "required": false, "default": "https://mastodon.social" },
-        ],
-      },
-  }
+metadata: {"clawdhub":{"emoji":"🦣"},"clawdis":{"envVars":[{"name":"MASTODON_TOKEN","required":true},{"name":"MASTODON_INSTANCE","required":false,"default":"https://mastodon.social"}]}}
 ---
 
 # Mastodon Scout
